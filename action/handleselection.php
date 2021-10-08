@@ -283,7 +283,11 @@ class action_plugin_bookcreator_handleselection extends DokuWiki_Action_Plugin {
               if (empty($id)) {
                 continue;
               }
-              $list[] = cleanID($id);
+              $contents = rawWiki($id);
+              $lines = substr_count($contents, "\n")+1;
+              if ($lines > 2) {
+                $list[] = cleanID($id);
+              }
             }
           }
         }
